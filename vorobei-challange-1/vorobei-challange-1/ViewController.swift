@@ -24,17 +24,15 @@ class ViewController : UIViewController {
         
         let img1 = UIImage(systemName: "arrowshape.turn.up.right.circle.fill")
         
-        UIView.performWithoutAnimation {
-            self.button1.setTitle("First Button", for: .normal)
-            self.button1.setImage(img1, for: .normal)
-            
-            self.button2.setTitle("Second Medium Button", for: .normal)
-            self.button2.setImage(img1, for: .normal)
-            
-            self.button3.setTitle("Third", for: .normal)
-            self.button3.setImage(img1, for: .normal)
-            self.button3.addTarget(self, action: #selector(self.action), for: .touchUpInside)
-        }
+        self.button1.setTitle("First Button", for: .normal)
+        self.button1.setImage(img1, for: .normal)
+        
+        self.button2.setTitle("Second Medium Button", for: .normal)
+        self.button2.setImage(img1, for: .normal)
+        
+        self.button3.setTitle("Third", for: .normal)
+        self.button3.setImage(img1, for: .normal)
+        self.button3.addTarget(self, action: #selector(self.action), for: .touchUpInside)
         
         
         
@@ -72,13 +70,6 @@ class CustomButton: UIButton {
     }
     
     
-    override var isEnabled: Bool {
-        didSet {
-            print(isEnabled)
-        }
-    }
-    
-    
     let spacing: CGFloat = 8
 
     override init(frame: CGRect) {
@@ -112,16 +103,16 @@ class CustomButton: UIButton {
         
         return size
     }
-
+    
     override func layoutSubviews() {
         super.layoutSubviews()
         
         if let imageView = imageView, let titleLabel = titleLabel {
             let titleWidth = titleLabel.frame.width
             let imageWidth = imageView.frame.width
-
+            
             let totalWidth = titleWidth + spacing + imageWidth
-
+            
             titleLabel.frame.origin.x = (bounds.width - totalWidth) / 2
             imageView.frame.origin.x = titleLabel.frame.maxX + spacing
         }
@@ -129,17 +120,15 @@ class CustomButton: UIButton {
     
     override func tintColorDidChange() {
         UIView.animate(withDuration: 0.2) {
-                if self.tintColor == .systemBlue {
-                    self.backgroundColor = self.tintColor
-                    self.titleLabel?.textColor = .white
-                    self.imageView?.tintColor = .white
-                } else {
-                    self.backgroundColor = .systemGray2
-                    self.titleLabel?.textColor = .systemGray3
-                    self.imageView?.tintColor = .systemGray3
-                }
+            if self.tintColor == .systemBlue {
+                self.backgroundColor = self.tintColor
+                self.titleLabel?.textColor = .white
+                self.imageView?.tintColor = .white
+            } else {
+                self.backgroundColor = .systemGray2
+                self.titleLabel?.textColor = .systemGray3
+                self.imageView?.tintColor = .systemGray3
             }
-//        }
-        
+        }
     }
 }
